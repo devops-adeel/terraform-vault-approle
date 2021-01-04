@@ -1,10 +1,8 @@
 resource "vault_auth_backend" "default" {
-  provider = vault.default
   type     = "approle"
 }
 
 resource "vault_approle_auth_backend_role" "default" {
-  provider  = vault.default
   backend   = vault_auth_backend.default.path
   role_name = var.application_name
 }
@@ -16,7 +14,6 @@ data "vault_approle_auth_backend_role_id" "default" {
 }
 
 resource "vault_approle_auth_backend_role_secret_id" "default" {
-  provider  = vault.default
   backend   = vault_auth_backend.default.path
   role_name = vault_approle_auth_backend_role.default.role_name
 }
@@ -55,19 +52,16 @@ data "vault_policy_document" "default" {
 }
 
 resource "vault_policy" "default" {
-  provider = vault.default
   name     = "namespace-admin"
   policy   = data.vault_policy_document.default.hcl
 }
 
 resource "vault_identity_entity" "default" {
-  provider = vault.default
   name     = var.application_name
   policies = ["default", vault_policy.default.name]
 }
 
 resource "vault_identity_entity_alias" "default" {
-  provider       = vault.default
   name           = var.application_name
   mount_accessor = vault_auth_backend.default.accessor
   canonical_id   = vault_identity_entity.default.id
