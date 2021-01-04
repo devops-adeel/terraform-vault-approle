@@ -28,5 +28,3 @@ provider "vault" {
 |------|-------------|
 | `approle_id` | Approle ID |
 | `approle_secret` | Approle Secret ID |
-| `namespace_id` | ID of Vault Namespace |
-
