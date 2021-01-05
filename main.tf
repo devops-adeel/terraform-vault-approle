@@ -3,8 +3,9 @@ resource "vault_auth_backend" "default" {
 }
 
 resource "vault_approle_auth_backend_role" "default" {
-  backend   = vault_auth_backend.default.path
-  role_name = var.application_name
+  backend        = vault_auth_backend.default.path
+  role_name      = var.application_name
+  token_policies = ["default", vault_policy.default.name]
 }
 
 #This is for outputs.tf
