@@ -46,6 +46,11 @@ data "vault_policy_document" "default" {
     description  = "List, create, update, and delete key/value secrets"
   }
   rule {
+    path         = "transit/*"
+    capabilities = ["create", "read", "update", "delete", "list"]
+    description  = "Manage the transit secrets engine"
+  }
+  rule {
     path         = "sys/mounts/*"
     capabilities = ["create", "read", "update", "delete", "list"]
     description  = "List existing & create new secrets engines."
