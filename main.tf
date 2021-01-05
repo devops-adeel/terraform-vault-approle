@@ -46,9 +46,9 @@ data "vault_policy_document" "default" {
     description  = "List, create, update, and delete key/value secrets"
   }
   rule {
-    path         = "sys/mounts"
-    capabilities = ["read"]
-    description  = "List existing secrets engines."
+    path         = "sys/mounts/*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+    description  = "List existing & create new secrets engines."
   }
 }
 
