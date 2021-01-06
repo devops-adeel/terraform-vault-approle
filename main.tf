@@ -1,10 +1,14 @@
+locals {
+  vault_policies = concat(["default"], var.vault_policies)
+}
+
 resource "vault_auth_backend" "default" {
   type = "approle"
 }
 
 resource "vault_approle_auth_backend_role" "default" {
-  backend        = vault_auth_backend.default.path
-  role_name      = var.application_name
+  backend   = vault_auth_backend.default.path
+  role_name = var.application_name
 }
 
 #This is for outputs.tf
@@ -20,7 +24,7 @@ resource "vault_approle_auth_backend_role_secret_id" "default" {
 
 resource "vault_identity_entity" "default" {
   name     = var.application_name
-  policies = ["default", var.vault_policy_name]
+  policies = local.vault_policies
 }
 
 resource "vault_identity_entity_alias" "default" {

@@ -3,8 +3,8 @@ variable "application_name" {
   type        = string
 }
 
-variable "vault_policy_name" {
-  description = "Name of a pre-defined vault policy"
-  type = string
-  default = ""
+variable "vault_policies" {
+  description = "List of pre-defined vault policies"
+  type        = list(any)
+  default     = []
 }
