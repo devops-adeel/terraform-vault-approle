@@ -1,20 +1,16 @@
+## Terraform Vault Approle Namespace Admin
+
+This terraform module creates an approle ID to be used as a Vault Namespace admin.
+
 ## Requirements
 
-Vault provider aliased `default` is declared like below example:
-
-```
-provider "vault" {
-  alias     = "default"
-  namespace = vault_namespace.default.path
-}
-```
+N/A
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | `vault` | n/a |
-| `vault.default` | n/a |
 
 ## Inputs
 

@@ -5,7 +5,7 @@ resource "vault_auth_backend" "default" {
 resource "vault_approle_auth_backend_role" "default" {
   backend        = vault_auth_backend.default.path
   role_name      = var.application_name
-  token_policies = ["default", vault_policy.default.name]
+  token_policies = ["default", vault_policy.default.name]  #TODO: Vault Entity will bind to it.
 }
 
 #This is for outputs.tf
