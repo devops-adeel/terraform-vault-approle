@@ -1,6 +1,6 @@
 locals {
-  vault_auth_backend          = data.vault_auth_backend.default.accessor ? data.vault_auth_backend.default.path : vault_auth_backend.default.0.path
-  vault_auth_backend_accessor = data.vault_auth_backend.default.accessor ? data.vault_auth_backend.default.accessor : vault_auth_backend.default.0.accessor
+  vault_auth_backend          = length(data.vault_auth_backend.default.accessor) > 0 ? data.vault_auth_backend.default.path : vault_auth_backend.default.0.path
+  vault_auth_backend_accessor = length(data.vault_auth_backend.default.accessor) > 0 ? data.vault_auth_backend.default.accessor : vault_auth_backend.default.0.accessor
 }
 
 data "vault_auth_backend" "default" {
