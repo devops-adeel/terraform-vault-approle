@@ -8,3 +8,8 @@ output "approle_secret" {
   value       = vault_approle_auth_backend_role_secret_id.default.secret_id
   sensitive   = true
 }
+
+output "entity_id" {
+  description = "The ID of the newly created Vault Identity Entity"
+  value       = vault_identity_entity.default.id
+}

@@ -1,7 +1,3 @@
-locals {
-  vault_policies = concat(["default"], var.vault_policies)
-}
-
 resource "vault_auth_backend" "default" {
   type = "approle"
 }
@@ -23,8 +19,11 @@ resource "vault_approle_auth_backend_role_secret_id" "default" {
 }
 
 resource "vault_identity_entity" "default" {
-  name     = var.application_name
-  policies = local.vault_policies
+  name = var.application_name
+  metadata = {
+    env     = var.env
+    service = var.service
+  }
 }
 
 resource "vault_identity_entity_alias" "default" {

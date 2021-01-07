@@ -3,8 +3,14 @@ variable "application_name" {
   type        = string
 }
 
-variable "vault_policies" {
-  description = "List of pre-defined vault policies"
-  type        = list(any)
-  default     = []
+variable "env" {
+  description = "The environment name the identity principal will operate in"
+  type        = string
+  default     = "dev"
+}
+
+variable "service" {
+  description = "The name of the service attached to the principal approle"
+  type        = string
+  default     = "web"
 }
