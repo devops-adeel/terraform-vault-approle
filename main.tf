@@ -8,7 +8,7 @@ data "vault_auth_backend" "default" {
 }
 
 resource "vault_auth_backend" "default" {
-  count = data.vault_auth_backend.default.accessor ? 0 : 1
+  count = length(data.vault_auth_backend.default.accessor) > 0 ? 0 : 1
   type  = "approle"
 }
 
