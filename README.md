@@ -17,7 +17,8 @@ N/A
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | `application_name` | Name of the application/customer | `string` | n/a | yes |
-| `vault_policies` | List of pre-defined vault policies | `list(any)` | `[]` | no |
+| `env` | The environment name the identity principal will operate in | `string` | `"dev"` | no |
+| `service` | The name of the service attached to the principal approle | `string` | `"web"` | no |
 
 ## Outputs
 
@@ -25,3 +26,4 @@ N/A
 |------|-------------|
 | `approle_id` | Approle ID |
 | `approle_secret` | Approle Secret ID |
+| `entity_id` | The ID of the newly created Vault Identity Entity |
