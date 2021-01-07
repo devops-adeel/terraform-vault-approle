@@ -30,10 +30,18 @@ provider "vault" {
   namespace = trimsuffix(vault_namespace.default.id, "/")
 }
 
+module "vault_admin_policy" {
+  source = "git::https://github.com/devops-adeel/terraform-vault-policy-ns-admin.git"
+  providers = {
+    vault = vault.default
+  }
+}
+
 module "vault_approle" {
   source = "git::https://github.com/devops-adeel/terraform-vault-approle.git?ref=v0.2.0"
   providers = {
     vault = vault.default
   }
   application_name = local.application_name
+  vault_policies = [module.vault_admin_policy.vault_policy_name]
 }
