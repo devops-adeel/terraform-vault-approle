@@ -1,6 +1,8 @@
 locals {
-  vault_auth_backend          = length(data.vault_auth_backend.default.accessor) > 0 ? data.vault_auth_backend.default.path : vault_auth_backend.default.0.path
-  vault_auth_backend_accessor = length(data.vault_auth_backend.default.accessor) > 0 ? data.vault_auth_backend.default.accessor : vault_auth_backend.default.0.accessor
+  /* vault_auth_backend          = length(data.vault_auth_backend.default.accessor) > 0 ? data.vault_auth_backend.default.path : vault_auth_backend.default.0.path */
+  /* vault_auth_backend_accessor = length(data.vault_auth_backend.default.accessor) > 0 ? data.vault_auth_backend.default.accessor : vault_auth_backend.default.0.accessor */
+  vault_auth_backend          = data.vault_auth_backend.default.accessor != null ? data.vault_auth_backend.default.path : vault_auth_backend.default.0.path
+  vault_auth_backend_accessor = data.vault_auth_backend.default.accessor != null ? data.vault_auth_backend.default.accessor : vault_auth_backend.default.0.accessor
 }
 
 data "vault_auth_backend" "default" {
@@ -8,7 +10,8 @@ data "vault_auth_backend" "default" {
 }
 
 resource "vault_auth_backend" "default" {
-  count = length(data.vault_auth_backend.default.accessor) > 0 ? 0 : 1
+  /* count = length(data.vault_auth_backend.default.accessor) > 0 ? 0 : 1 */
+  count = data.vault_auth_backend.default.accessor != null ? 0 : 1
   type  = "approle"
 }
 
