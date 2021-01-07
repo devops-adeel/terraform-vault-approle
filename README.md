@@ -18,7 +18,7 @@ N/A
 |------|-------------|------|---------|:--------:|
 | `application_name` | Name of the application/customer | `string` | n/a | yes |
 | `env` | The environment name the identity principal will operate in | `string` | `"dev"` | no |
-| `service` | The name of the service attached to the principal approle | `string` | `"web"` | no |
+| `service` | The name of the service attached to the principal approle | `string` | `"platform"` | no |
 
 ## Outputs
 

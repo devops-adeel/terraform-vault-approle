@@ -12,5 +12,5 @@ variable "env" {
 variable "service" {
   description = "The name of the service attached to the principal approle"
   type        = string
-  default     = "web"
+  default     = "platform"
 }
