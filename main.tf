@@ -41,3 +41,14 @@ resource "vault_identity_entity_alias" "default" {
   mount_accessor = local.vault_auth_backend_accessor
   canonical_id   = vault_identity_entity.default.id
 }
+
+resource "vault_identity_group" "default" {
+  name              = format("%s-%s", var.application_name, var.service)
+  type              = "internal"
+  member_entity_ids = [vault_identity_entity.default.id]
+  metadata = {
+    env          = var.env
+    service_name = var.service
+    application  = var.application_name
+  }
+}
