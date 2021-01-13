@@ -35,7 +35,7 @@ module "vault_admin_policy" {
   providers = {
     vault = vault.default
   }
-  entity_ids = [module.vault_approle.entity_id]
+  group_ids = [module.vault_approle.group_id]
 }
 
 module "vault_approle" {
