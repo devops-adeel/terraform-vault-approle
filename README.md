@@ -27,3 +27,4 @@ N/A
 | `approle_id` | Approle ID |
 | `approle_secret` | Approle Secret ID |
 | `entity_id` | The ID of the newly created Vault Identity Entity |
+| `group_id` | The ID of the newly created Vault Identity Group |
