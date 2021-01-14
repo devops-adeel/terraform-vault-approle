@@ -1,5 +1,5 @@
 locals {
-  application_name = "terraform-modules-development"
+  application_name = "terraform-modules-development-approle"
 }
 
 resource "vault_namespace" "default" {
