@@ -1,20 +1,6 @@
 name: terraform-plan-approve-apply
 on: [push]
 jobs:
-  # prepare-module-run:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v2
-
-  #     - name: Upload terraform files
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: tf-files
-  #         path: |
-  #           *.tf
-  #           !integration_tests
-
   terraform-init-plan:
     runs-on: ubuntu-latest
     defaults:
@@ -63,17 +49,7 @@ jobs:
         run: terraform init -input=false
         working-directory: integration_tests/fixtures
 
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate
-        working-directory: integration_tests/fixtures
-        continue-on-error: true
-
       - name: Terraform Plan
         id: plan
         run: terraform plan
         working-directory: integration_tests/fixtures
-
-      - run: echo ${{ steps.plan.outputs.stdout }}
-      - run: echo ${{ steps.plan.outputs.stderr }}
-      - run: echo ${{ steps.plan.outputs.exitcode }}
