@@ -3,8 +3,7 @@
 This terraform module creates an approle ID with and identity group associated to it.
 
 ## Status
-[![CircleCI](https://circleci.hashicorp.engineering/gh/devops-adeel/terraform-vault-approle.svg?style=svg&circle-token=31cb78f8d7d1053c055c6f35a82325664d571de6)](https://circleci.hashicorp.engineering/gh/devops-adeel/terraform-vault-approle)
-![terraform-plan-approve-apply](https://github.com/devops-adeel/terraform-vault-approle/workflows/terraform-plan-approve-apply/badge.svg?branch=feature%2Fintegration-tests)
+![terraform-plan-approve-apply](https://github.com/devops-adeel/terraform-vault-approle/workflows/terraform-plan-approve-apply/badge.svg?branch=default)
 
 ## Requirements
 
