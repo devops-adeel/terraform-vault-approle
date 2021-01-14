@@ -4,10 +4,16 @@ jobs:
   prepare-module-run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Prepare module for Integration Tests
-        run: cp *.tf integration_tests/fixtures/module/
-        shell: bash
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Upload terraform files
+        uses: actions/upload-artifact@v2
+        with:
+          name: tf-files
+          path: |
+            *.tf
+            !integration_tests
 
   terraform-init-plan:
     runs-on: ubuntu-latest
@@ -15,28 +21,42 @@ jobs:
       run:
         working-directory: integration_tests/fixtures
     steps:
-    - uses: actions/checkout@v2
-    - uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TFE_TOKEN }}
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Terraform fmt
-      id: fmt
-      run: terraform fmt -check
-      continue-on-error: true
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TFE_TOKEN }}
 
-    - name: Terraform Init
-      id: init
-      run: terraform init -input=false
+      - name: Download TF module files
+        uses: actions/download-artifact@v2
+        with:
+          name: tf-files
+          path: module
 
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate
+      - name: Display structure of downloaded files
+        run: ls -l
+        working-directory: module
 
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
 
-    - run: echo ${{ steps.plan.outputs.stdout }}
-    - run: echo ${{ steps.plan.outputs.stderr }}
-    - run: echo ${{ steps.plan.outputs.exitcode }}
+      - name: Terraform Init
+        id: init
+        run: terraform init -input=false
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+        continue-on-error: true
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan
+
+      - run: echo ${{ steps.plan.outputs.stdout }}
+      - run: echo ${{ steps.plan.outputs.stderr }}
+      - run: echo ${{ steps.plan.outputs.exitcode }}
