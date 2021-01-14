@@ -10,6 +10,10 @@ data "vault_auth_backend" "default" {
 resource "vault_auth_backend" "default" {
   count = data.vault_auth_backend.default.accessor != null ? 0 : 1
   type  = "approle"
+  tune {
+    max_lease_ttl     = "8760h"
+    default_lease_ttl = "24h"
+  }
 }
 
 resource "vault_approle_auth_backend_role" "default" {

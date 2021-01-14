@@ -39,7 +39,7 @@ module "vault_admin_policy" {
 }
 
 module "vault_approle" {
-  source = "git::https://github.com/devops-adeel/terraform-vault-approle.git?ref=v0.2.0"
+  source = "git::https://github.com/devops-adeel/terraform-vault-approle.git?ref=v0.4.0"
   providers = {
     vault = vault.default
   }
