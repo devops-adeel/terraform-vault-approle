@@ -7,6 +7,10 @@ jobs:
       run:
         working-directory: integration_tests/fixtures
     steps:
+    - name: Prepare modules environment
+      run: cp ../../*.tf module/
+      shell: bash
+
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v1
       with:
