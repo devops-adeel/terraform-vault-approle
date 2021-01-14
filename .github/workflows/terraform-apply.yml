@@ -1,8 +1,25 @@
 name: terraform-plan-approve-apply
 on: [push]
 jobs:
-  prepare-module-run:
+  # prepare-module-run:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+
+  #     - name: Upload terraform files
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: tf-files
+  #         path: |
+  #           *.tf
+  #           !integration_tests
+
+  terraform-init-plan:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: integration_tests/fixtures
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -15,15 +32,6 @@ jobs:
             *.tf
             !integration_tests
 
-  terraform-init-plan:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: integration_tests/fixtures
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v1
         with:
@@ -33,29 +41,38 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: tf-files
-          path: module
+          path: integration_tests/fixtures/module
 
       - name: Display structure of downloaded files
         run: ls -l
-        working-directory: module
+        working-directory: integration_tests/fixtures/module
 
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
         continue-on-error: true
+        working-directory: integration_tests/fixtures
+
+      - name: Terraform get update
+        id: get
+        run: terraform get -update
+        working-directory: integration_tests/fixtures
 
       - name: Terraform Init
         id: init
         run: terraform init -input=false
+        working-directory: integration_tests/fixtures
 
       - name: Terraform Validate
         id: validate
         run: terraform validate
+        working-directory: integration_tests/fixtures
         continue-on-error: true
 
       - name: Terraform Plan
         id: plan
         run: terraform plan
+        working-directory: integration_tests/fixtures
 
       - run: echo ${{ steps.plan.outputs.stdout }}
       - run: echo ${{ steps.plan.outputs.stderr }}
