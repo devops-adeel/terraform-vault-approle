@@ -4,6 +4,7 @@ jobs:
   prepare-module-run:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Prepare module for Integration Tests
         run: cp *.tf integration_tests/fixtures/module/
         shell: bash
