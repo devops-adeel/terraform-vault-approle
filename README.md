@@ -1,6 +1,9 @@
-## Terraform Vault Approle Namespace Admin
+## Terraform Vault Approle
 
-This terraform module creates an approle ID to be used as a Vault Namespace admin.
+This terraform module creates an approle ID with and identity group associated to it.
+
+## Status
+![terraform-plan-approve-apply](https://github.com/devops-adeel/terraform-vault-approle/workflows/terraform-plan-approve-apply/badge.svg?branch=default)
 
 ## Requirements
 
