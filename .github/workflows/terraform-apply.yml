@@ -1,16 +1,19 @@
 name: terraform-plan-approve-apply
 on: [push]
 jobs:
+  prepare-module-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare module for Integration Tests
+        run: cp *.tf integration_tests/fixtures/module/
+        shell: bash
+
   terraform-init-plan:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: integration_tests/fixtures
     steps:
-    - name: Prepare modules environment
-      run: cp *.tf integration_tests/fixtures/module/
-      shell: bash
-
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v1
       with:
