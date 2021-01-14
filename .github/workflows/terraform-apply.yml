@@ -8,7 +8,7 @@ jobs:
         working-directory: integration_tests/fixtures
     steps:
     - name: Prepare modules environment
-      run: cp ../../*.tf module/
+      run: cp *.tf integration_tests/fixtures/module/
       shell: bash
 
     - uses: actions/checkout@v2
