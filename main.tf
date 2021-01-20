@@ -1,6 +1,7 @@
 locals {
   vault_auth_backend          = data.vault_auth_backend.default.accessor != null ? data.vault_auth_backend.default.path : vault_auth_backend.default.0.path
   vault_auth_backend_accessor = data.vault_auth_backend.default.accessor != null ? data.vault_auth_backend.default.accessor : vault_auth_backend.default.0.accessor
+  role_id                     = format("%s-%s", var.application_name, var.service)
 }
 
 data "vault_auth_backend" "default" {
@@ -18,7 +19,11 @@ resource "vault_auth_backend" "default" {
 
 resource "vault_approle_auth_backend_role" "default" {
   backend   = local.vault_auth_backend
-  role_name = format("%s-%s", var.application_name, var.service)
+  role_name = local.role_id
+  role_id   = local.role_id
+  depends_on = [
+    vault_identity_entity_alias.default,
+  ]
 }
 
 #This is for outputs.tf
@@ -33,7 +38,7 @@ resource "vault_approle_auth_backend_role_secret_id" "default" {
 }
 
 resource "vault_identity_entity" "default" {
-  name = format("%s-%s", var.application_name, var.service)
+  name = local.role_id
   metadata = {
     env     = var.env
     service = var.service
@@ -41,13 +46,13 @@ resource "vault_identity_entity" "default" {
 }
 
 resource "vault_identity_entity_alias" "default" {
-  name           = format("%s-%s", var.application_name, var.service)
+  name           = local.role_id
   mount_accessor = local.vault_auth_backend_accessor
   canonical_id   = vault_identity_entity.default.id
 }
 
 resource "vault_identity_group" "default" {
-  name              = format("%s-%s", var.application_name, var.service)
+  name              = local.role_id
   type              = "internal"
   member_entity_ids = [vault_identity_entity.default.id]
   metadata = {

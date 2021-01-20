@@ -11,7 +11,7 @@ output "approle_secret" {
 
 output "entity_id" {
   description = "The ID of the newly created Vault Identity Entity"
-  value       = vault_identity_entity.default.id
+  value       = vault_identity_entity_alias.default.id
 }
 
 output "group_id" {
