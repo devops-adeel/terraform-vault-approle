@@ -12,7 +12,7 @@ resource "vault_auth_backend" "default" {
   type  = "approle"
   tune {
     max_lease_ttl     = "8760h"
-    default_lease_ttl = "24h"
+    default_lease_ttl = "8760h"
   }
 }
 

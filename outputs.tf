@@ -18,3 +18,8 @@ output "group_id" {
   description = "The ID of the newly created Vault Identity Group"
   value       = vault_identity_group.default.id
 }
+
+output "backend_path" {
+  description = "The Auth Backend path mounted upon"
+  value       = local.vault_auth_backend
+}

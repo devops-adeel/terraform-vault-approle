@@ -20,3 +20,10 @@ module "default" {
   env              = "dev"
   service          = "web"
 }
+
+resource "vault_approle_auth_backend_login" "default" {
+  provider  = vault.default
+  backend   = module.default.backend_path
+  role_id   = module.default.approle_id
+  secret_id = module.default.approle_secret
+}
