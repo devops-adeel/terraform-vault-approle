@@ -14,3 +14,8 @@ variable "service" {
   type        = string
   default     = "platform"
 }
+
+variable "mount_accessor" {
+  description = "The Accessor ID of the Approle Auth Backend."
+  type        = string
+}

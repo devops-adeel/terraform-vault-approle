@@ -1,6 +1,6 @@
 output "approle_id" {
   description = "Approle ID"
-  value       = data.vault_approle_auth_backend_role_id.default.role_id
+  value       = local.role_id
 }
 
 output "approle_secret" {
@@ -21,5 +21,5 @@ output "group_id" {
 
 output "backend_path" {
   description = "The Auth Backend path mounted upon"
-  value       = local.vault_auth_backend
+  value       = local.backend_path
 }

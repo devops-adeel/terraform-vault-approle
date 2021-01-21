@@ -7,7 +7,7 @@ This terraform module creates an approle ID with and identity group associated t
 
 ## Requirements
 
-N/A
+An Approle Auth Backend must exist in given namespace.
 
 ## Providers
 
@@ -22,6 +22,7 @@ N/A
 | `application_name` | Name of the application/customer | `string` | n/a | yes |
 | `env` | The environment name the identity principal will operate in | `string` | `"dev"` | no |
 | `service` | The name of the service attached to the principal approle | `string` | `"platform"` | no |
+| `mount_accessor` | The Accessor ID of the Approle Auth Backend. | `string` | n/a | yes |
 
 ## Outputs
 
@@ -31,3 +32,4 @@ N/A
 | `approle_secret` | Approle Secret ID |
 | `entity_id` | The ID of the newly created Vault Identity Entity |
 | `group_id` | The ID of the newly created Vault Identity Group |
+| `backend_path` | The Auth Backend path mounted upon |
