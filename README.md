@@ -31,5 +31,4 @@ An Approle Auth Backend must exist in given namespace.
 | `approle_id` | Approle ID |
 | `approle_secret` | Approle Secret ID |
 | `entity_id` | The ID of the newly created Vault Identity Entity |
-| `group_id` | The ID of the newly created Vault Identity Group |
 | `backend_path` | The Auth Backend path mounted upon |
