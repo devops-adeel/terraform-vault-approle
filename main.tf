@@ -32,8 +32,8 @@ resource "vault_identity_group" "default" {
   type              = "internal"
   member_entity_ids = [vault_identity_entity.default.id]
   metadata = {
-    env          = var.env
-    service_name = var.service
-    application  = var.application_name
+    env         = var.env
+    service     = var.service
+    application = var.application_name
   }
 }
