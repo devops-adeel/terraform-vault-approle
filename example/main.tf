@@ -35,11 +35,11 @@ module "vault_admin_policy" {
   providers = {
     vault = vault.default
   }
-  group_ids = [module.vault_approle.group_id]
+  entity_ids = [module.vault_approle.entity_id]
 }
 
 module "vault_approle" {
-  source = "git::https://github.com/devops-adeel/terraform-vault-approle.git?ref=v0.4.0"
+  source = "git::https://github.com/devops-adeel/terraform-vault-approle.git?ref=v0.6.0"
   providers = {
     vault = vault.default
   }

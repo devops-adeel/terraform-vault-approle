@@ -19,21 +19,15 @@ resource "vault_approle_auth_backend_role_secret_id" "default" {
 
 resource "vault_identity_entity" "default" {
   name = local.role_id
+  metadata = {
+    env         = var.env
+    service     = var.service
+    application = var.application_name
+  }
 }
 
 resource "vault_identity_entity_alias" "default" {
   name           = local.role_id
   mount_accessor = var.mount_accessor
   canonical_id   = vault_identity_entity.default.id
-}
-
-resource "vault_identity_group" "default" {
-  name              = local.role_id
-  type              = "internal"
-  member_entity_ids = [vault_identity_entity.default.id]
-  metadata = {
-    env         = var.env
-    service     = var.service
-    application = var.application_name
-  }
 }
