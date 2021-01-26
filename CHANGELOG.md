@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.6.1] -  2021-01-26
+## Fixed
+- Fixed identity entity output
+
 ## [v0.6.0] -  2021-01-26
 ## Removed
 - feat: removed identity group
