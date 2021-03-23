@@ -1,5 +1,7 @@
 locals {
   application_name = "terraform-modules-development-approle"
+  env              = "dev"
+  service          = "web"
 }
 
 resource "vault_namespace" "default" {
@@ -26,8 +28,8 @@ module "default" {
     vault = vault.default
   }
   application_name = local.application_name
-  env              = "dev"
-  service          = "web"
+  env              = local.env
+  service          = local.service
   mount_accessor   = vault_auth_backend.default.accessor
 }
 
