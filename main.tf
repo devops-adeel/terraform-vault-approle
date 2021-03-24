@@ -1,3 +1,18 @@
+/**
+ * Usage:
+ *
+ * ```hcl
+ *
+ * module "vault_approle" {
+ *   source           = "git::https://github.com/devops-adeel/terraform-vault-approle.git?ref=v0.6.0"
+ *   application_name = local.application_name
+ *   env              = "dev"
+ *   service          = "web"
+ * }
+ * ```
+ */
+
+
 locals {
   role_id      = format("%s-%s", var.application_name, var.service)
   backend_path = "approle"
