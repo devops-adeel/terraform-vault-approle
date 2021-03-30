@@ -8,28 +8,22 @@ output "approle_policies" {
   value       = vault_approle_auth_backend_login.default.policies
 }
 
-output "entity_id" {
-  description = "The ID of the newly created Vault Identity Entity"
-  value       = module.default.entity_id
-}
-
-output "group_id" {
-  description = "The ID of the newly created Vault Identity Group"
-  value       = module.default.group_id
-}
-
 output "token" {
-  value = vault_approle_auth_backend_login.default.client_token
+  description = "Vault Client Token"
+  value       = vault_approle_auth_backend_login.default.client_token
 }
 
 output "url" {
-  value = var.vault_address
+  description = "Vault URL Address"
+  value       = var.vault_address
 }
 
 output "namespace" {
-  value = format("admin/%s/", local.application_name)
+  description = "Vault Namespace"
+  value       = format("admin/%s/", local.application_name)
 }
 
 output "path" {
-  value = "auth/token/lookup-self"
+  description = "Vault API Endpoint"
+  value       = "auth/token/lookup-self"
 }

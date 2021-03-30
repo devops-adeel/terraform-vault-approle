@@ -9,11 +9,6 @@ output "approle_secret" {
   sensitive   = true
 }
 
-output "entity_id" {
-  description = "The ID of the newly created Vault Identity Entity"
-  value       = vault_identity_entity.default.id
-}
-
 output "backend_path" {
   description = "The Auth Backend path mounted upon"
   value       = local.backend_path

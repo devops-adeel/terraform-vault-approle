@@ -4,11 +4,12 @@
  * ```hcl
  *
  * module "vault_approle" {
- *   source           = "git::https://github.com/devops-adeel/terraform-vault-approle.git?ref=v0.6.0"
- *   application_name = "tdp"
- *   env              = "dev"
- *   service          = "web"
- *   mount_accessor   = vault_auth_backend.default.accessor
+ *   source            = "git::https://github.com/devops-adeel/terraform-vault-approle.git?ref=v0.7.0"
+ *   application_name  = "tdp"
+ *   env               = "dev"
+ *   service           = "web"
+ *   identity_group_id = module.static_secrets.identity_group_id
+ *   mount_accessor    = vault_auth_backend.default.accessor
  * }
  * ```
  */

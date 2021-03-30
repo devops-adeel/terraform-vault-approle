@@ -23,4 +23,5 @@ variable "mount_accessor" {
 variable "identity_group_id" {
   description = "ID of Vault Identity Group to which a vault policy is bound to"
   type        = string
+  sensitive   = true
 }
