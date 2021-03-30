@@ -27,10 +27,15 @@ module "default" {
   providers = {
     vault = vault.default
   }
-  application_name = local.application_name
-  env              = local.env
-  service          = local.service
-  mount_accessor   = vault_auth_backend.default.accessor
+  application_name  = local.application_name
+  env               = local.env
+  service           = local.service
+  mount_accessor    = vault_auth_backend.default.accessor
+  identity_group_id = module.static_secrets.identity_group_id
+}
+
+module "static_secrets" {
+  source = "git::https://github.com/devops-adeel/terraform-vault-secrets-kv.git?ref=v0.3.0"
 }
 
 resource "vault_approle_auth_backend_login" "default" {
