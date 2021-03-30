@@ -14,7 +14,7 @@ No requirements.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_default"></a> [default](#module\_default) | ./module |  |
-| <a name="module_static_secrets"></a> [static\_secrets](#module\_static\_secrets) | git::https://github.com/devops-adeel/terraform-vault-secrets-kv.git?ref=feature/member-entity-id |  |
+| <a name="module_static_secrets"></a> [static\_secrets](#module\_static\_secrets) | git::https://github.com/devops-adeel/terraform-vault-secrets-kv.git?ref=v0.3.0 |  |
 
 ## Resources
 

@@ -35,7 +35,7 @@ module "default" {
 }
 
 module "static_secrets" {
-  source = "git::https://github.com/devops-adeel/terraform-vault-secrets-kv.git?ref=feature/member-entity-id"
+  source = "git::https://github.com/devops-adeel/terraform-vault-secrets-kv.git?ref=v0.3.0"
 }
 
 resource "vault_approle_auth_backend_login" "default" {
