@@ -19,3 +19,8 @@ variable "mount_accessor" {
   description = "The Accessor ID of the Approle Auth Backend."
   type        = string
 }
+
+variable "identity_group_id" {
+  description = "ID of Vault Identity Group to which a vault policy is bound to"
+  type        = string
+}
